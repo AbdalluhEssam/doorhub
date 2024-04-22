@@ -43,7 +43,7 @@ class OrderViewAdminControllerImp extends OrderViewAdminController {
   Future getData() async {
     bookings.clear();
     statusRequest = StatusRequest.loading;
-    var response = await booking.getData();
+    var response = await booking.getAllData();
     print("========================================================================$response");
     statusRequest = handlingData(response);
     if (StatusRequest.success == statusRequest) {
