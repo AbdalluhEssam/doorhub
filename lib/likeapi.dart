@@ -24,6 +24,8 @@ class AppLink {
   static const String searchPage = "$serverLink/search.php";
   static const String senp = "$serverLink/s.php";
   static const String catPage = "$serverLink/categories/view.php";
+  static const String productAll = "$serverLink/categories/viewall.php";
+  static const String productEdit = "$serverLink/categories/edit.php";
   static const String catSerPage = "$serverLink/categories/glucategories.php";
   static const String glusSerPage = "$serverLink/categories/glusservies.php";
   static const String glusAdditions = "$serverLink/categories/glusadditions.php";
@@ -63,6 +65,8 @@ class AppLink {
   static const String addBooking       = "$serverLink/booking/add.php";
   static const String deleteBooking    = "$serverLink/booking/add.php";
   static const String viewBooking      = "$serverLink/booking/view.php";
+  static const String editBooking      = "$serverLink/booking/edit.php";
+  static const String viewBookingAll      = "$serverLink/booking/viewall.php";
 //================================== ADMIN ===============================//
   static const String addCategories       = "$serverLinkAdmin/categories/add.php";
   static const String deleteCategories    = "$serverLinkAdmin/categories/delete.php";

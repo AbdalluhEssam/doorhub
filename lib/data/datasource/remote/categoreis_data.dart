@@ -15,6 +15,12 @@ class CategoriesProData {
     return response.fold((l) => l, (r) => r);
   }
 
+  getAllData() async {
+    var response = await crud.postData(AppLink.productAll, {
+    });
+    return response.fold((l) => l, (r) => r);
+  }
+
   addProduct(
     String name,
     String nameAr,
@@ -45,6 +51,13 @@ class CategoriesProData {
     var response = await crud.postData(AppLink.deleteProduct, {
       "id": idPro,
       "items_image": image,
+    });
+    return response.fold((l) => l, (r) => r);
+  }
+  editProduct(String itemsId, String itemsActive) async {
+    var response = await crud.postData(AppLink.productEdit, {
+      "items_id": itemsId,
+      "items_active": itemsActive,
     });
     return response.fold((l) => l, (r) => r);
   }

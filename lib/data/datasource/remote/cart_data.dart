@@ -66,6 +66,18 @@ class Booking {
     });
     return response.fold((l) => l, (r) => r);
   }
+  editData(bookingId ,status ) async {
+    var response = await crud.postData(AppLink.editBooking, {
+      "booking_id": bookingId.toString(),
+      "status": status.toString(),
+    });
+    return response.fold((l) => l, (r) => r);
+  }
+  getAllData() async {
+    var response = await crud.postData(AppLink.viewBookingAll, {
+    });
+    return response.fold((l) => l, (r) => r);
+  }
 
   addData(String itemId, String address, String location, String note,
       String date, String hour) async {

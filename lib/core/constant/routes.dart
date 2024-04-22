@@ -1,5 +1,6 @@
 class AppRoute {
   static const String login = "/login";
+  static const String chooseLoginOrSignup = "/ChooseLoginOrSignup";
   static const String onBoarding = "/onboarding";
   static const String signup = "/signup";
   static const String forgetPassword = "/forgetpassword";
@@ -26,6 +27,7 @@ class AppRoute {
   static const String aboutUs = "/aboutus";
   static const String helpPage = "/helppage";
   static const String productScreen = "/ProductScreen";
+  static const String productAdminScreen = "/ProductAdminScreen";
   static const String listItem = "/listitem";
   static const String mySplashScreen = "/mysplashscreen";
   static const String checkOut = "/checkout";
@@ -39,6 +41,7 @@ class AppRoute {
   static const String search = "/search";
   static const String addressView = "/AddressView";
   static const String addressAdd = "/AddressAdd";
+  static const String bookingAdminView = "/BookingAdminView";
   static const String glusEventOrder = "/GlusEventOrder";
   static const String myFavorite = "/myFavorite";
 

@@ -10,12 +10,12 @@ import 'package:image_picker/image_picker.dart';
 import 'package:services/controller/cart/cardview_controller.dart';
 import 'package:services/core/services/services.dart';
 import 'package:services/data/datasource/remote/categoreis_data.dart';
-import '../../core/class/statusrequest.dart';
-import '../../core/constant/color.dart';
-import '../../core/functions/handlingdatacontroller.dart';
-import '../../data/datasource/remote/cart_data.dart';
+import '../../../core/class/statusrequest.dart';
+import '../../../core/constant/color.dart';
+import '../../../core/functions/handlingdatacontroller.dart';
+import '../../../data/datasource/remote/cart_data.dart';
 
-abstract class CategoriesProController extends GetxController {
+abstract class ProductAdminController extends GetxController {
   initialData();
 
   getData();
@@ -23,7 +23,7 @@ abstract class CategoriesProController extends GetxController {
   addCart(String id);
 }
 
-class CategoriesProControllerImp extends CategoriesProController {
+class ProductAdminControllerImp extends ProductAdminController {
   MyServices myServices = Get.find();
   CategoriesProData categoriesProData = CategoriesProData(Get.find());
   CardViewData cardAddData = CardViewData(Get.find());
@@ -51,7 +51,6 @@ class CategoriesProControllerImp extends CategoriesProController {
 
   @override
   void onInit() {
-    idPro = Get.arguments['id'];
     getData();
     initialData();
     super.onInit();
@@ -61,7 +60,7 @@ class CategoriesProControllerImp extends CategoriesProController {
   getData() async {
     items.clear();
     statusRequest = StatusRequest.loading;
-    var response = await categoriesProData.postData(idPro.toString());
+    var response = await categoriesProData.getAllData();
     print(
         "========================================================================$response");
     statusRequest = handlingData(response);
@@ -84,6 +83,21 @@ class CategoriesProControllerImp extends CategoriesProController {
     statusRequest = StatusRequest.loading;
     var response =
         await categoriesProData.deleteProduct(id.toString(), image.toString());
+    print(
+        "========================================================================$response");
+    statusRequest = handlingData(response);
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == "success") {
+        getData();
+      } else {
+        statusRequest = StatusRequest.failure;
+      }
+    }
+    update();
+  }
+  editProduct(id, itemsActive) async {
+    statusRequest = StatusRequest.loading;
+    var response = await categoriesProData.editProduct(id.toString(), itemsActive.toString());
     print(
         "========================================================================$response");
     statusRequest = handlingData(response);
@@ -172,7 +186,7 @@ class CategoriesProControllerImp extends CategoriesProController {
         nameAr.text,
         itemsDesc.text,
         itemsDescAr.text,
-        0.toString(),
+        itemsActiveNum.toString(),
         itemsDescount.text,
         idPro.toString(),
         myFile,

@@ -6,7 +6,7 @@ class AppColor {
   static const Color secoundColor = Color(0xff165069);
   static const Color secoundColorBack = Color(0xffdfdfdf);
   static const Color black = Color(0xff000000);
-  static const Color red = Color(0xff801616);
+  static const Color red = Colors.red;
   static const Color backgroundColor = Color(0xffffffff);
   static const ta = LinearGradient(colors: [
     Color(0xffffd200),

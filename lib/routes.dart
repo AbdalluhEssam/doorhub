@@ -4,6 +4,7 @@ import 'package:services/core/middleware/mymiddleware.dart';
 import 'package:services/main.dart';
 import 'package:services/view/screen/address/add.dart';
 import 'package:services/view/screen/address/view.dart';
+import 'package:services/view/screen/auth/choose_admin.dart';
 import 'package:services/view/screen/auth/forgetpassword/forgetpassword.dart';
 import 'package:services/view/screen/auth/forgetpassword/resetpassword.dart';
 import 'package:services/view/screen/auth/forgetpassword/success_resetpassword.dart';
@@ -14,6 +15,8 @@ import 'package:services/view/screen/auth/success_signup.dart';
 import 'package:services/view/screen/auth/verfiycodesignup.dart';
 import 'package:services/view/screen/booking/chechoutglus.dart';
 import 'package:services/view/screen/booking/checkout/orderglus.dart';
+import 'package:services/view/screen/home/admin/ordersAdmin.dart';
+import 'package:services/view/screen/home/admin/product.dart';
 import 'package:services/view/screen/home/bookingscreen.dart';
 import 'package:services/view/screen/home/categoriespro.dart';
 import 'package:services/view/screen/home/home.dart';
@@ -34,6 +37,7 @@ List<GetPage<dynamic>>? routes = [
       name: "/", page: () => const OnBoarding(), middlewares: [MyMiddleWare()]),
   // GetPage(name: "/", page: () => const TestView()),
   GetPage(name: AppRoute.login, page: () => const Login()),
+  GetPage(name: AppRoute.chooseLoginOrSignup, page: () => const ChooseLoginOrSignup()),
   GetPage(name: AppRoute.language, page: () => const Language()),
   GetPage(name: AppRoute.signup, page: () => const SignUp()),
   GetPage(name: AppRoute.forgetPassword, page: () => const ForgetPassword()),
@@ -63,6 +67,7 @@ List<GetPage<dynamic>>? routes = [
   GetPage(name: AppRoute.aboutUs, page: () => const AboutUs()),
   GetPage(name: AppRoute.helpPage, page: () => const HelpPage()),
   GetPage(name: AppRoute.productScreen, page: () => const ProductScreen()),
+  GetPage(name: AppRoute.productAdminScreen, page: () => const ProductAdminScreen()),
   // GetPage(name: AppRoute.listItem, page: () => const ListItemsHome()),
   GetPage(name: AppRoute.mySplashScreen, page: () => const MySplashScreen()),
   GetPage(name: AppRoute.checkOutGlus, page: () => const CheckOutGlus()),
@@ -70,5 +75,6 @@ List<GetPage<dynamic>>? routes = [
   GetPage(name: AppRoute.policyReturn, page: () => const PolicyReturn()),
   GetPage(name: AppRoute.addressView, page: () => const AddressView()),
   GetPage(name: AppRoute.addressAdd, page: () => const AddressAdd()),
+  GetPage(name: AppRoute.bookingAdminView, page: () => const BookingAdminView()),
   // GetPage(name: AppRoute.search, page: () =>  SearchScreen()),
 ];

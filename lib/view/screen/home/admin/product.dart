@@ -3,29 +3,30 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:services/core/constant/color.dart';
 import 'package:services/core/functions/translatedordatabase.dart';
-import '../../../controller/home/categoriespro_controller.dart';
-import '../../../core/class/handlingdataview.dart';
-import '../../../core/constant/routes.dart';
-import '../../../core/functions/validinput.dart';
-import '../../../data/model/itemsmodel.dart';
-import '../../../likeapi.dart';
-import '../../widget/alert_dialog.dart';
-import '../../widget/auth/customtextformauth.dart';
+import '../../../../controller/home/admin/product_controller.dart';
+import '../../../../core/class/handlingdataview.dart';
+import '../../../../core/constant/routes.dart';
+import '../../../../core/functions/validinput.dart';
+import '../../../../data/model/itemsmodel.dart';
+import '../../../../likeapi.dart';
+import '../../../widget/alert_dialog.dart';
+import '../../../widget/auth/customtextformauth.dart';
 
-class ProductScreen extends StatelessWidget {
-  const ProductScreen({Key? key}) : super(key: key);
+class ProductAdminScreen extends StatelessWidget {
+  const ProductAdminScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Get.put(CategoriesProControllerImp());
+    Get.put(ProductAdminControllerImp());
     return Scaffold(
         appBar: AppBar(
           title: Text(translateDataBase("مقدم الخدمة", "Service provider")),
         ),
-        floatingActionButton: GetBuilder<CategoriesProControllerImp>(
+        floatingActionButton: GetBuilder<ProductAdminControllerImp>(
           builder: (controller) => Visibility(
             visible:
-                controller.myServices.sharedPreferences.getString("admin") == "2",
+                controller.myServices.sharedPreferences.getString("admin") ==
+                    "1",
             child: FloatingActionButton(
               onPressed: () {
                 showDialog(
@@ -62,7 +63,7 @@ class ProductScreen extends StatelessWidget {
                                     //     ),
                                     //   ),
                                     // ),
-                                    GetBuilder<CategoriesProControllerImp>(
+                                    GetBuilder<ProductAdminControllerImp>(
                                       builder: (controller) => InkWell(
                                         onTap: () {
                                           controller.imgGlr();
@@ -162,17 +163,17 @@ class ProductScreen extends StatelessWidget {
                                       iconData: Icons.numbers,
                                     ),
                                     // Add more TextFormField widgets for other fields like phone, etc.
-                                    // GetBuilder<CategoriesProControllerImp>(
-                                    //   builder: (controller) => ListTile(
-                                    //       title: Text(
-                                    //           "${translateDataBase("اظهار للجميع", "Show to everyone")}"),
-                                    //       trailing: Switch(
-                                    //         value: controller.itemsActive,
-                                    //         onChanged: (value) {
-                                    //           controller.toggleActive();
-                                    //         },
-                                    //       )),
-                                    // ),
+                                    GetBuilder<ProductAdminControllerImp>(
+                                      builder: (controller) => ListTile(
+                                          title: Text(
+                                              "${translateDataBase("اظهار للجميع", "Show to everyone")}"),
+                                          trailing: Switch(
+                                            value: controller.itemsActive,
+                                            onChanged: (value) {
+                                              controller.toggleActive();
+                                            },
+                                          )),
+                                    ),
                                     const SizedBox(height: 16),
                                     Row(
                                       children: [
@@ -213,14 +214,14 @@ class ProductScreen extends StatelessWidget {
             ),
           ),
         ),
-        body: GetBuilder<CategoriesProControllerImp>(
+        body: GetBuilder<ProductAdminControllerImp>(
             builder: (controller) => HandlingDataView(
                 statusRequest: controller.statusRequest,
                 widget: const ListProCat())));
   }
 }
 
-class ListProCat extends GetView<CategoriesProControllerImp> {
+class ListProCat extends GetView<ProductAdminControllerImp> {
   const ListProCat({Key? key}) : super(key: key);
 
   @override
@@ -250,8 +251,7 @@ class ListProCatCart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    CategoriesProControllerImp controller =
-        Get.put(CategoriesProControllerImp());
+    ProductAdminControllerImp controller = Get.put(ProductAdminControllerImp());
     return InkWell(
       onTap: () {
         Get.toNamed(AppRoute.productDetails, arguments: {
@@ -261,98 +261,143 @@ class ListProCatCart extends StatelessWidget {
       child: Card(
           clipBehavior: Clip.antiAliasWithSaveLayer,
           color: AppColor.secoundColorBack,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          child: Column(
             children: [
-              Stack(
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  CachedNetworkImage(
-                    imageUrl: "${AppLink.imageItems}/${itemsModel.itemsImage}",
-                    fit: BoxFit.cover,
-                    width: Get.width * 0.5,
-                    // width: Get.width,
-                  ),
-                  Visibility(
-                      visible: controller.myServices.sharedPreferences
-                              .getString("admin") ==
-                          "1",
-                      child: CircleAvatar(
-                        child: FloatingActionButton(
-                            shape: const CircleBorder(),
-                            onPressed: () {
-                              showDialog(
-                                context: context,
-                                builder: (context) => buildAlertDialog(
-                                  context: context,
-                                  text: 'هل تريد حدف المنتج',
-                                  content: Text(
-                                      "اسم المنتج : ${itemsModel.itemsNameAr}"),
-                                  textButton: 'تاكيد الحذف',
-                                  onPressed: () {
-                                    controller.deleteData(
-                                        itemsModel.itemsId.toString(),
-                                        itemsModel.itemsImage.toString());
-                                    Get.back();
-                                    Get.appUpdate();
-                                    Get.forceAppUpdate();
-                                  },
-                                ),
-                              );
-                            },
-                            child: const Icon(
-                              Icons.delete_outline,
-                              color: Colors.white,
-                            )),
-                      ))
-                ],
-              ),
-              Flexible(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
+                  Stack(
                     children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "${translateDataBase(itemsModel.itemsNameAr, itemsModel.itemsName)}",
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          Text(
-                            "${translateDataBase(itemsModel.categoriesNameAr, itemsModel.categoriesName)}",
-                            style: TextStyle(
-                                fontSize: 12,
-                                height: 1,
-                                color: AppColor.primaryColor.withOpacity(0.8)),
-                          ),
-                        ],
+                      CachedNetworkImage(
+                        imageUrl:
+                            "${AppLink.imageItems}/${itemsModel.itemsImage}",
+                        fit: BoxFit.cover,
+                        width: Get.width * 0.5,
+                        // width: Get.width,
                       ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      OutlinedButton(
-                          style: const ButtonStyle(
-                              backgroundColor: MaterialStatePropertyAll(
-                                  AppColor.primaryColor),
-                              side: MaterialStatePropertyAll(BorderSide.none)),
-                          onPressed: () {
-                                    Get.toNamed(AppRoute.productDetails, arguments: {
-          "itemsModel": itemsModel,
-        });
-                          },
-                          child: Text(
-                            translateDataBase("احجز", "Booking"),
-                            style: const TextStyle(
-                                color: AppColor.backgroundColor,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16),
+                      Visibility(
+                          visible: controller.myServices.sharedPreferences
+                                  .getString("admin") ==
+                              "1",
+                          child: CircleAvatar(
+                            child: FloatingActionButton(
+                                shape: const CircleBorder(),
+                                onPressed: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) => buildAlertDialog(
+                                      context: context,
+                                      text: 'هل تريد حدف المنتج',
+                                      content: Text(
+                                          "اسم المنتج : ${itemsModel.itemsNameAr}"),
+                                      textButton: 'تاكيد الحذف',
+                                      onPressed: () {
+                                        controller.deleteData(
+                                            itemsModel.itemsId.toString(),
+                                            itemsModel.itemsImage.toString());
+                                        Get.back();
+                                        Get.appUpdate();
+                                        Get.forceAppUpdate();
+                                      },
+                                    ),
+                                  );
+                                },
+                                child: const Icon(
+                                  Icons.delete_outline,
+                                  color: Colors.white,
+                                )),
                           ))
                     ],
                   ),
-                ),
+                  Flexible(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "${translateDataBase(itemsModel.itemsNameAr, itemsModel.itemsName)}",
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              Text(
+                                "${translateDataBase(itemsModel.categoriesNameAr, itemsModel.categoriesName)}",
+                                style: TextStyle(
+                                    fontSize: 12,
+                                    height: 1,
+                                    color:
+                                        AppColor.primaryColor.withOpacity(0.8)),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          OutlinedButton(
+                              style: const ButtonStyle(
+                                  backgroundColor: MaterialStatePropertyAll(
+                                      AppColor.primaryColor),
+                                  side: MaterialStatePropertyAll(
+                                      BorderSide.none)),
+                              onPressed: () {
+                                Get.toNamed(AppRoute.productDetails,
+                                    arguments: {
+                                      "itemsModel": itemsModel,
+                                    });
+                              },
+                              child: Text(
+                                translateDataBase("احجز", "Booking"),
+                                style: const TextStyle(
+                                    color: AppColor.backgroundColor,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16),
+                              ))
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  if (itemsModel.itemsActive.toString() == "1")
+                    OutlinedButton(
+                        style: const ButtonStyle(
+                            backgroundColor:
+                                MaterialStatePropertyAll(AppColor.red),
+                            side: MaterialStatePropertyAll(BorderSide.none)),
+                        onPressed: () {
+                          controller.editProduct(itemsModel.itemsId, "0");
+                        },
+                        child: Text(
+                          translateDataBase("اخفاء", "Hide"),
+                          style: const TextStyle(
+                              color: AppColor.backgroundColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16),
+                        )),
+                  if (itemsModel.itemsActive.toString() == "0")
+                  OutlinedButton(
+                      style: const ButtonStyle(
+                          backgroundColor:
+                              MaterialStatePropertyAll(AppColor.primaryColor),
+                          side: MaterialStatePropertyAll(BorderSide.none)),
+                      onPressed: () {
+                        controller.editProduct(itemsModel.itemsId, "1");
+                      },
+                      child: Text(
+                        translateDataBase("اظهار", "Show"),
+                        style: const TextStyle(
+                            color: AppColor.backgroundColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16),
+                      )),
+                ],
+              )
             ],
           )),
     );

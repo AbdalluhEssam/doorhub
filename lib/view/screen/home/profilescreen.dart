@@ -83,6 +83,20 @@ class PersonInformation extends StatelessWidget {
                         onClicked: () {
                           Get.toNamed(AppRoute.addressView);
                         }),
+                    if (controller.myServices.sharedPreferences.getString("admin") == "1")
+                      buildMenuItem(
+                          icon: Icons.category,
+                          text: "العمال".tr,
+                          onClicked: () {
+                            Get.toNamed(AppRoute.productAdminScreen);
+                          }),
+                    if (controller.myServices.sharedPreferences.getString("admin") == "1")
+                      buildMenuItem(
+                          icon: Icons.food_bank_outlined,
+                          text: "الطلبات".tr,
+                          onClicked: () {
+                            Get.toNamed(AppRoute.bookingAdminView);
+                          }),
                     buildMenuItem(
                         icon: Icons.info_outline,
                         text: "about".tr,

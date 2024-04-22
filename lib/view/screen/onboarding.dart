@@ -24,7 +24,7 @@ class OnBoarding extends GetView<OnBoardingControllerImp> {
                 .setString("step", "1");
             SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
                 overlays: SystemUiOverlay.values); // to re-show bars
-            Get.offAllNamed(AppRoute.login);
+            Get.offAllNamed(AppRoute.chooseLoginOrSignup);
           },
           // foregroundColor: Colors.red,
         ));
