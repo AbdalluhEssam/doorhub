@@ -1,4 +1,4 @@
-package com.example.services
+package com.door.hub
 
 import io.flutter.embedding.android.FlutterActivity
 

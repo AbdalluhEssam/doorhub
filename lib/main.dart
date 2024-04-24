@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       translations: MyTranslation(),
       debugShowCheckedModeBanner: false,
-      title: 'Service',
+      title: 'Door Hub',
       locale: controller.language,
       theme: controller.appTheme,
       initialBinding: MyBinding(),
