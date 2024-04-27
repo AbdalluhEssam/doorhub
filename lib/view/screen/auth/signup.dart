@@ -129,6 +129,44 @@ class SignUp extends StatelessWidget {
                                   // mycontroller: ,
                                 ),
                               ),
+
+                              GetBuilder<SignUpControllerImp>(
+                                  init: SignUpControllerImp(),
+                                  builder: (controllerImp) =>
+                                      DropdownButton<String>(
+                                        style: const TextStyle(
+                                          fontSize: 20,
+                                          color: AppColor.primaryColor,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                        borderRadius: BorderRadius.circular(40),
+                                        isExpanded: true,
+                                        alignment: AlignmentDirectional.centerEnd,
+                                        hint: const Text(
+                                          "اختار صلاحيتك",
+                                          style: TextStyle(
+                                            color: AppColor.primaryColor,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                          textAlign: TextAlign.end,
+                                        ),
+                                        items: controller.permissions.map((e) {
+                                          String value = e.keys.first;
+                                          String text = e.values.first;
+                                          return DropdownMenuItem<String>(
+                                            value: value,
+                                            child: Text(text),
+                                          );
+                                        }).toList(),
+                                        onChanged: (String? val) {
+                                          controller.userApprove = val ?? "";
+                                          controller.update();
+                                          controllerImp.update();
+                                        },
+                                        value: controller.userApprove,
+                                      )
+                              ),
                               // Text("forget".tr,textAlign:TextAlign.end,style: const TextStyle(color: AppColor.gray),),
                               const SizedBox(
                                 height: 20,
