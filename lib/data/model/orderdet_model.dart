@@ -37,20 +37,20 @@ class OrderDetModel {
   OrderDetModel.fromJson(Map<String, dynamic> json) {
     cartId = json['cart_id'].toString();
     itemsId = json['items_id'].toString();
-    usersId = json['users_id'];
-    quantity = json['quantity'];
-    orderId = json['order_id'];
-    itemsName = json['items_name'];
-    itemsNameAr = json['items_name_ar'];
-    itemsDesc = json['items_desc'];
-    itemsDescAr = json['items_desc_ar'];
-    itemsImage = json['items_image'];
-    itemsCount = json['items_count'];
-    itemsActive = json['items_active'];
-    itemsPrice = json['items_price'];
-    itemsDescount = json['items_descount'];
-    itemsDate = json['items_date'];
-    itemsCat = json['items_cat'];
+    usersId = json['users_id'].toString();
+    quantity = json['quantity'].toString();
+    orderId = json['order_id'].toString();
+    itemsName = json['items_name'].toString();
+    itemsNameAr = json['items_name_ar'].toString();
+    itemsDesc = json['items_desc'].toString();
+    itemsDescAr = json['items_desc_ar'].toString();
+    itemsImage = json['items_image'].toString();
+    itemsCount = json['items_count'].toString();
+    itemsActive = json['items_active'].toString();
+    itemsPrice = json['items_price'].toString();
+    itemsDescount = json['items_descount'].toString();
+    itemsDate = json['items_date'].toString();
+    itemsCat = json['items_cat'].toString();
   }
 
   Map<String, dynamic> toJson() {

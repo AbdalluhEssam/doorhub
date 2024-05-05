@@ -70,7 +70,7 @@ class SignUpControllerImp extends SignUpController {
 
   List<Map<String, String>> permissions = [
     {"2": "مقدم خدمة"},
-    {"0": "مستخدم"},
+    {"1": "مستخدم"},
   ];
   var userApprove;
 

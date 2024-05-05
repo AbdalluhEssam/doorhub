@@ -15,12 +15,12 @@ class CategoriesModel {
       this.catServices});
 
   CategoriesModel.fromJson(Map<String, dynamic> json) {
-    categoriesId = json['categories_id'];
-    categoriesName = json['categories_name'];
-    categoriesNameAr = json['categories_name_ar'];
-    categoriesImage = json['categories_image'];
-    categoriesDatetime = json['categories_datetime'];
-    catServices = json['cat_services'];
+    categoriesId = json['categories_id'].toString();
+    categoriesName = json['categories_name'].toString();
+    categoriesNameAr = json['categories_name_ar'].toString();
+    categoriesImage = json['categories_image'].toString();
+    categoriesDatetime = json['categories_datetime'].toString();
+    catServices = json['cat_services'].toString();
   }
 
   Map<String, dynamic> toJson() {

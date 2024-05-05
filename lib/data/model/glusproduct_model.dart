@@ -35,22 +35,22 @@ class GlusProductModel {
         this.glusSer});
 
   GlusProductModel.fromJson(Map<String, dynamic> json) {
-    idGluspro = json['id_gluspro'];
-    productName = json['product_name'];
-    productNameAr = json['product_name_ar'];
-    productDesc = json['product_desc'];
-    productDescAr = json['product_desc_ar'];
-    productImage = json['product_image'];
-    receptionPrice = json['reception_price'];
-    productPrice = json['product_price'];
-    bathroomPrice = json['bathroom_price'];
-    kitchenPrice = json['kitchen_price'];
-    priceBalcony = json['price_balcony'];
-    totalPrice = json['total_price'];
-    productDescount = json['product_descount'];
-    productDate = json['product_date'];
-    glusSer = json['glus_ser'];
-    typesId = json['type_id'];
+    idGluspro = json['id_gluspro'].toString();
+    productName = json['product_name'].toString();
+    productNameAr = json['product_name_ar'].toString();
+    productDesc = json['product_desc'].toString();
+    productDescAr = json['product_desc_ar'].toString();
+    productImage = json['product_image'].toString();
+    receptionPrice = json['reception_price'].toString();
+    productPrice = json['product_price'].toString();
+    bathroomPrice = json['bathroom_price'].toString();
+    kitchenPrice = json['kitchen_price'].toString();
+    priceBalcony = json['price_balcony'].toString();
+    totalPrice = json['total_price'].toString();
+    productDescount = json['product_descount'].toString();
+    productDate = json['product_date'].toString();
+    glusSer = json['glus_ser'].toString();
+    typesId = json['type_id'].toString();
   }
 
   Map<String, dynamic> toJson() {
@@ -85,10 +85,10 @@ class AdditionsGlusModel {
   AdditionsGlusModel({this.id, this.name, this.typesId, this.createAt});
 
   AdditionsGlusModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    typesId = json['types_id'];
-    createAt = json['createAt'];
+    id = json['id'].toString();
+    name = json['name'].toString();
+    typesId = json['types_id'].toString();
+    createAt = json['createAt'].toString();
   }
 
   Map<String, dynamic> toJson() {

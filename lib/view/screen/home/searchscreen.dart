@@ -9,7 +9,6 @@ import 'package:services/core/constant/routes.dart';
 import 'package:services/data/model/itemsmodel.dart';
 import 'package:services/likeapi.dart';
 import 'package:http/http.dart' as http;
-import '../../../controller/home/categoriespro_controller.dart';
 import '../../../core/class/statusrequest.dart';
 import '../../../core/functions/translatedordatabase.dart';
 import '../../../data/datasource/remote/homedata.dart';
@@ -77,14 +76,15 @@ class SearchScreen extends SearchDelegate {
               itemCount: snapshot.data!.length,
               itemBuilder: (context, i) => InkWell(
                 onTap: () {
-                  Get.toNamed(AppRoute.productDetails, arguments: {
-                    "id": int.parse(snapshot.data[i]['items_id']),
-                    "name": snapshot.data[i]['items_name_ar'],
-                    "image": snapshot.data[i]['items_image'],
-                    "price": int.parse(snapshot.data[i]['items_price']),
-                    "desc": snapshot.data[i]['items_desc_ar'],
-                    "count": int.parse(snapshot.data[i]['items_count']),
-                  });
+                  // Get.toNamed(AppRoute.productDetails, arguments: {
+                  //   "itemsModel" : snapshot.data[i],
+                  //   "id": snapshot.data[i]['items_id'].toString(),
+                  //   "name": snapshot.data[i]['items_name_ar'],
+                  //   "image": snapshot.data[i]['items_image'],
+                  //   "price": snapshot.data[i]['items_price'].toString(),
+                  //   "desc": snapshot.data[i]['items_desc_ar'],
+                  //   "count": snapshot.data[i]['items_count'].toString(),
+                  // });
                 },
                 child: Card(
                   clipBehavior: Clip.antiAliasWithSaveLayer,

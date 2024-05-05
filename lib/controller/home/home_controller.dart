@@ -84,6 +84,7 @@ class HomeControllerImp extends HomeController {
     }
     update();
   }
+
   File? myFile;
   imgGlr() async {
     final XFile? image =

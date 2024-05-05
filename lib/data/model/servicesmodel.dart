@@ -13,11 +13,11 @@ class ServicesModel {
       this.servicesData});
 
   ServicesModel.fromJson(Map<String, dynamic> json) {
-    servicesId = json['services_id'];
-    servicesName = json['services_name'];
-    servicesNameAr = json['services_name_ar'];
-    servicesImage = json['services_image'];
-    servicesData = json['services_data'];
+    servicesId = json['services_id'].toString();
+    servicesName = json['services_name'].toString();
+    servicesNameAr = json['services_name_ar'].toString();
+    servicesImage = json['services_image'].toString();
+    servicesData = json['services_data'].toString();
   }
 
   Map<String, dynamic> toJson() {
